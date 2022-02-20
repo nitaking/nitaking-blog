@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "run-p build:*",
+    "build": "run-s build:next build:third-party-posts",
     "build:next": "node scripts/set-blog-index-cache.js && next build",
     "build:third-party-posts": "ts-node --project tsconfig.builder.json ./scripts/third-party-posts.ts",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore",
