@@ -521,6 +521,7 @@ function _buildPost(data) {
     Title: prop.Page.title[0].plain_text,
     Slug: prop.Slug.rich_text[0].plain_text,
     Date: prop.Date.date.start,
+    dateMiliSeconds: new Date(prop.Date.date.start).getTime(),
     Tags: prop.Tags.multi_select.map(opt => opt.name),
     Excerpt:
       prop.Excerpt.rich_text.length > 0

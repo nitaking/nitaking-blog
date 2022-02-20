@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import styles from './svg.module.css'
 
 type Props = { size?: number; color?: string }
 
@@ -6,7 +7,12 @@ export const ZennIcon: FC<Props> = props => {
   const { size = 30, color = '#3EA8FF' } = props
 
   return (
-    <svg viewBox="0 0 100 100" width={size} height={size}>
+    <svg
+      viewBox="0 0 100 100"
+      width={size}
+      height={size}
+      className={styles.svg}
+    >
       <path
         fill={color}
         className="st0"

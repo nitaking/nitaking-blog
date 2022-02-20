@@ -9,14 +9,17 @@ import {
   PostTags,
   PostTitle,
   ReadMoreLink,
-} from '../../components/blog-parts'
+} from '@/components/blog-parts'
 import styles from '../../styles/blog.module.css'
 import {
   getPosts,
   getFirstPost,
   getRankedPosts,
   getAllTags,
-} from '../../lib/notion/client'
+} from '@/lib/notion/client'
+import { Box, Container, Spacer } from '@chakra-ui/react'
+import { getRssItems } from '@/lib/rss/client'
+import React from 'react'
 
 export async function getStaticProps() {
   const posts = await getPosts()
@@ -24,12 +27,15 @@ export async function getStaticProps() {
   const rankedPosts = await getRankedPosts()
   const tags = await getAllTags()
 
+  const articles = await getRssItems()
+
   return {
     props: {
       posts,
       firstPost,
       rankedPosts,
       tags,
+      articles,
     },
     revalidate: 60,
   }
@@ -42,7 +48,7 @@ const RenderPosts = ({
   tags = [],
 }) => {
   return (
-    <div className={styles.container}>
+    <Container className={styles.container} maxW="container.md">
       <DocumentHead title="Blog" />
 
       <div className={styles.mainContent}>
@@ -50,13 +56,13 @@ const RenderPosts = ({
 
         {posts.map(post => {
           return (
-            <div className={styles.post} key={post.Slug}>
+            <Box key={post.Slug} mb={4}>
               <PostDate post={post} />
               <PostTags post={post} />
               <PostTitle post={post} />
               <PostExcerpt post={post} />
               <ReadMoreLink post={post} />
-            </div>
+            </Box>
           )
         })}
 
@@ -67,9 +73,10 @@ const RenderPosts = ({
 
       <div className={styles.subContent}>
         <BlogPostLink heading="Recommended" posts={rankedPosts} />
+        <Spacer h={1} />
         <BlogTagLink heading="Categories" tags={tags} />
       </div>
-    </div>
+    </Container>
   )
 }
 

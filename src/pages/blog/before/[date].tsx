@@ -25,6 +25,7 @@ import {
   getFirstPost,
   getAllTags,
 } from '../../../lib/notion/client'
+import { Spacer } from '@chakra-ui/react'
 
 export async function getStaticProps({ params: { date } }) {
   if (!Date.parse(date) || !/\d{4}-\d{2}-\d{2}/.test(date)) {
@@ -108,6 +109,7 @@ const RenderPostsBeforeDate = ({
 
       <div className={styles.subContent}>
         <BlogPostLink heading="Recommended" posts={rankedPosts} />
+        <Spacer h={1} />
         <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>

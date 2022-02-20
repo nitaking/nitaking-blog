@@ -1,15 +1,15 @@
 import DocumentHead from '../../components/document-head'
-import { NoContents } from '../../components/blog-parts'
-import styles from '../../styles/blog.module.css'
+import { NoContents } from '@/components/blog-parts'
+
 import {
   getPosts,
   getFirstPost,
   getRankedPosts,
   getAllTags,
-} from '../../lib/notion/client'
+} from '@/lib/notion/client'
 import posts from '.contents/posts.json'
-import { PostItem } from '@/types'
-import { PostIcon } from '@/components/PostList'
+import { Container, List } from '@chakra-ui/react'
+import { FeedList } from '@/features/rss/components/FeedList'
 
 export async function getStaticProps() {
   const posts = await getPosts()
@@ -28,36 +28,17 @@ export async function getStaticProps() {
   }
 }
 
-// const Articles = (posts: PostItem[]) => {}
-//
-// console.debug(
-//   JSON.stringify(
-//     posts.map(post => post.title),
-//     null,
-//     2
-//   )
-// )
-
 const RenderPosts = ({}) => {
   return (
-    <div className={styles.container}>
+    <div>
       <DocumentHead title="Other Posts" />
 
-      <div className={styles.mainContent}>
+      <Container>
         <NoContents contents={posts} />
-        <>
-          {posts.map(post => {
-            return (
-              <div className={styles.post} key={post.title}>
-                <PostIcon
-                  sourceType={post.sourceType as PostItem['sourceType']}
-                />
-                <span>{post.title}</span>
-              </div>
-            )
-          })}
-        </>
-      </div>
+        <List>
+          <FeedList posts={posts} />
+        </List>
+      </Container>
     </div>
   )
 }

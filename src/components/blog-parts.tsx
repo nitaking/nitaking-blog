@@ -10,6 +10,7 @@ import {
   getTagLink,
 } from '../lib/blog-helpers'
 import styles from '../styles/blog-parts.module.css'
+import { Box, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
 
 export const PostDate = ({ post }) => (
   <div className={styles.postDate}>
@@ -21,7 +22,7 @@ export const PostTitle = ({ post, enableLink = true }) => {
   const postTitle = post.Title ? post.Title : ''
 
   return (
-    <h3 className={styles.postTitle}>
+    <Text as="h3" fontSize="md" fontWeight="semibold">
       {enableLink ? (
         <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
           <a>{postTitle}</a>
@@ -29,12 +30,12 @@ export const PostTitle = ({ post, enableLink = true }) => {
       ) : (
         postTitle
       )}
-    </h3>
+    </Text>
   )
 }
 
 export const PostTags = ({ post }) => (
-  <div className={styles.postTags}>
+  <Text fontSize={'xs'}>
     {post.Tags &&
       post.Tags.length > 0 &&
       post.Tags.map(tag => (
@@ -42,13 +43,13 @@ export const PostTags = ({ post }) => (
           <a>{tag}</a>
         </Link>
       ))}
-  </div>
+  </Text>
 )
 
 export const PostExcerpt = ({ post }) => (
-  <div className={styles.postExcerpt}>
+  <Text fontSize="sm">
     <p>{post.Excerpt ? post.Excerpt : ''}</p>
-  </div>
+  </Text>
 )
 
 export const PostBody = ({ blocks }) => (
@@ -60,11 +61,17 @@ export const PostBody = ({ blocks }) => (
 )
 
 export const ReadMoreLink = ({ post }) => (
-  <div className={styles.readMoreLink}>
-    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
-      <a className={styles.readMore}>Read more</a>
-    </Link>
-  </div>
+  <Box p={3}>
+    <Box borderWidth={1} borderColor="gray.500" m="auto" w={32} py={2}>
+      <Stack alignItems="center">
+        <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
+          <Text as="a" fontSize="sm">
+            続きを読む
+          </Text>
+        </Link>
+      </Stack>
+    </Box>
+  </Box>
 )
 
 export const NextPageLink = ({ firstPost, posts }) => {
@@ -114,17 +121,17 @@ export const PostLinkList = ({ posts }) => {
   if (!posts || posts.length === 0) return null
 
   return (
-    <ul>
+    <UnorderedList p={3}>
       {posts.map(post => {
         return (
-          <li key={post.Slug}>
+          <ListItem key={post.Slug}>
             <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
               <a>{post.Title}</a>
             </Link>
-          </li>
+          </ListItem>
         )
       })}
-    </ul>
+    </UnorderedList>
   )
 }
 
@@ -132,17 +139,17 @@ export const TagLinkList = ({ tags }) => {
   if (!tags || tags.length === 0) return null
 
   return (
-    <ul>
+    <UnorderedList p={3}>
       {tags.map(tag => {
         return (
-          <li key={tag}>
+          <ListItem key={tag}>
             <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
               <a>{tag}</a>
             </Link>
-          </li>
+          </ListItem>
         )
       })}
-    </ul>
+    </UnorderedList>
   )
 }
 

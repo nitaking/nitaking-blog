@@ -3,6 +3,7 @@ export interface Post {
   Title: string
   Slug: string
   Date: string
+  dateMiliSeconds: number
   Tags: string[]
   Excerpt: string
   OGImage: string

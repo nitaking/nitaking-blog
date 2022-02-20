@@ -8,5 +8,6 @@ export const member: Member = {
   sources: [
     'https://zenn.dev/nitaking/feed',
     'https://qiita.com/nitaking/feed.atom',
+    'https://note.com/brunon/rss',
   ],
 }

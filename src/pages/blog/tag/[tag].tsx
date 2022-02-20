@@ -14,13 +14,14 @@ import {
 } from '../../../components/blog-parts'
 import styles from '../../../styles/blog.module.css'
 import { getTagLink } from '../../../lib/blog-helpers'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
   getPosts,
   getRankedPosts,
   getPostsByTag,
   getAllTags,
 } from '../../../lib/notion/client'
+import { Spacer } from '@chakra-ui/react'
 
 export async function getStaticProps({ params: { tag } }) {
   const posts = await getPostsByTag(tag)
@@ -105,7 +106,9 @@ const RenderPostsByTags = ({
 
       <div className={styles.subContent}>
         <BlogPostLink heading="Recommended" posts={rankedPosts} />
+        <Spacer h={1} />
         <BlogPostLink heading="Latest Posts" posts={recentPosts} />
+        <Spacer h={1} />
         <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>

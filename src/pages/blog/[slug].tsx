@@ -25,6 +25,7 @@ import {
   getAllTags,
   getAllBlocksByBlockId,
 } from '../../lib/notion/client'
+import { Spacer } from '@chakra-ui/react'
 
 export async function getStaticProps({ params: { slug } }) {
   const post = await getPostBySlug(slug)
@@ -130,8 +131,11 @@ const RenderPost = ({
           heading="Posts in the same category"
           posts={sameTagPosts}
         />
+        <Spacer h={1} />
         <BlogPostLink heading="Recommended" posts={rankedPosts} />
+        <Spacer h={1} />
         <BlogPostLink heading="Latest posts" posts={recentPosts} />
+        <Spacer h={1} />
         <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>

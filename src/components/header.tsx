@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Text, Stack } from '@chakra-ui/react'
 
 import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
 
@@ -16,18 +17,26 @@ const Header = () => {
   const url = new URL(asPath, NEXT_PUBLIC_URL)
 
   const navItems: NavItem[] = [
-    { label: 'Home', path: '/' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'OtherPost', path: '/other' },
+    { label: 'ホーム', path: '/' },
+    { label: 'ブログ', path: '/blog' },
   ]
 
   return (
     <header className={styles.header}>
-      <h1>
-        <Link href="/" passHref>
-          <a>{SITE_TITLE}</a>
-        </Link>
-      </h1>
+      <Link href="/" passHref>
+        <Stack direction="row" justifyContent="center" alignItems="center">
+          {/*<Image*/}
+          {/*  src="/icon/profile.jpg"*/}
+          {/*  boxSize="3rem"*/}
+          {/*  objectFit="cover"*/}
+          {/*  borderRadius="xl"*/}
+          {/*/>*/}
+
+          <Text as="h1" fontSize="3xl">
+            <a>{SITE_TITLE}</a>
+          </Text>
+        </Stack>
+      </Link>
 
       <ul>
         {navItems.map(({ label, path }) => (
