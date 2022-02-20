@@ -38,15 +38,15 @@ export async function getStaticProps() {
   }
 }
 
-const Articles = (posts: PostItem[]) => {}
-
-console.debug(
-  JSON.stringify(
-    posts.map(post => post.title),
-    null,
-    2
-  )
-)
+// const Articles = (posts: PostItem[]) => {}
+//
+// console.debug(
+//   JSON.stringify(
+//     posts.map(post => post.title),
+//     null,
+//     2
+//   )
+// )
 
 const RenderPosts = ({}) => {
   return (
