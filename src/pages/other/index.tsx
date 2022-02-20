@@ -1,15 +1,5 @@
 import DocumentHead from '../../components/document-head'
-import {
-  BlogPostLink,
-  BlogTagLink,
-  NextPageLink,
-  NoContents,
-  PostDate,
-  PostExcerpt,
-  PostTags,
-  PostTitle,
-  ReadMoreLink,
-} from '../../components/blog-parts'
+import { NoContents } from '../../components/blog-parts'
 import styles from '../../styles/blog.module.css'
 import {
   getPosts,
