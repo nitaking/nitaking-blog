@@ -32,7 +32,7 @@ describe('RenderPostsByTags', () => {
         tag={tag}
         posts={posts}
         rankedPosts={rankedPosts}
-        rcentPosts={recentPosts}
+        recentPosts={recentPosts}
         tags={tags}
         redirect={null}
       />
