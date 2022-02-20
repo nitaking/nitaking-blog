@@ -1,11 +1,13 @@
 {
-  "name": "easy-notion-blog",
+  "name": "nitaking-blog",
   "license": "MIT",
   "version": "0.1.1",
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "node scripts/set-blog-index-cache.js && next build && node scripts/expire-blog-index-cache.js",
+    "build": "run-p build:*",
+    "build:next": "node scripts/set-blog-index-cache.js && next build",
+    "build:third-party-posts": "ts-node --project tsconfig.builder.json ./scripts/third-party-posts.ts",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore",
     "lint": "next lint",
     "test": "jest --watch"
@@ -21,6 +23,7 @@
     "@types/mermaid": "^8.2.7",
     "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.0",
+    "fs-extra": "^10.0.0",
     "github-slugger": "^1.2.1",
     "mermaid": "^8.14.0",
     "next": "12",
@@ -29,6 +32,7 @@
     "react-dom": "^17.0.2",
     "react-share": "^4.4.0",
     "react-twitter-embed": "^3.0.3",
+    "rss-parser": "^3.12.0",
     "shell-quote": "^1.7.3",
     "uuid": "^8.1.0"
   },
@@ -43,7 +47,9 @@
     "husky": "^3.1.0",
     "jest": "^27.5.1",
     "lint-staged": "^9.5.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
+    "ts-node": "^10.5.0",
     "typescript": "^4.4.3"
   }
 }
