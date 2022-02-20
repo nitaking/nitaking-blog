@@ -59,7 +59,9 @@ const RenderPosts = ({}) => {
           {posts.map(post => {
             return (
               <div className={styles.post} key={post.title}>
-                <PostIcon sourceType={post.sourceType} />
+                <PostIcon
+                  sourceType={post.sourceType as PostItem['sourceType']}
+                />
                 <span>{post.title}</span>
               </div>
             )
