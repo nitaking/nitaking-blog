@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Text, Stack, Heading } from '@chakra-ui/react'
+import { Stack, Heading } from '@chakra-ui/react'
 
 import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
 
