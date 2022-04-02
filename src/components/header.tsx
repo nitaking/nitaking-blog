@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Text, Stack } from '@chakra-ui/react'
+import { Text, Stack, Heading } from '@chakra-ui/react'
 
 import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
 
@@ -32,9 +32,9 @@ const Header = () => {
           {/*  borderRadius="xl"*/}
           {/*/>*/}
 
-          <Text as="h1" fontSize="3xl">
-            <a>{SITE_TITLE}</a>
-          </Text>
+          <Heading as="h1" fontSize="3xl">
+            {SITE_TITLE}
+          </Heading>
         </Stack>
       </Link>
 

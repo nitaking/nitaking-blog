@@ -6,10 +6,12 @@ import {
   ListItem,
   Spacer,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { memo } from 'react'
 import { PostItem } from '@/types'
+import { mode } from '@chakra-ui/theme-tools'
 
 export function getHostFromURL(str: string) {
   const url = new URL(str)
@@ -44,6 +46,8 @@ export const FeedItem = memo(function FeedItemContent({
 }: {
   post: PostItem
 }) {
+  const postTitleColor = useColorModeValue('gray.700', 'gray.300')
+
   return (
     <ListItem key={post.title} alignItems="center" mb={4}>
       <Box
@@ -61,13 +65,19 @@ export const FeedItem = memo(function FeedItemContent({
 
         <Box display={'flex'} flexDirection={'row'} px={1}>
           <Link href={post.link} isExternal>
-            <Text color={'gray.700'} fontWeight="bold" fontSize="md">
+            <Text
+              color={postTitleColor}
+              fontWeight="bold"
+              fontSize="md"
+              maxW="md"
+              noOfLines={1}
+            >
               {post.title} <ExternalLinkIcon fontSize={14} mx="2px" />
             </Text>
           </Link>
 
-          <Box ml={'auto'}>
-            <Text color={'gray.500'} fontSize="sm">
+          <Box ml={'auto'} w={20}>
+            <Text color={'gray.500'} fontSize="xs">
               {formatYmd(new Date(post.isoDate))}
             </Text>
           </Box>

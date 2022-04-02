@@ -10,12 +10,17 @@ import {
   getTagLink,
 } from '../lib/blog-helpers'
 import styles from '../styles/blog-parts.module.css'
-import { Box, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
+import {
+  Box,
+  Heading,
+  ListItem,
+  Stack,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react'
 
 export const PostDate = ({ post }) => (
-  <div className={styles.postDate}>
-    {post.Date ? getDateStr(post.Date) : ''}
-  </div>
+  <Text fontSize="sm">{post.Date ? getDateStr(post.Date) : ''}</Text>
 )
 
 export const PostTitle = ({ post, enableLink = true }) => {
@@ -103,7 +108,9 @@ export const NoContents = ({ contents }) => {
 
 export const BlogPostLink = ({ heading, posts }) => (
   <div className={styles.blogPostLink}>
-    <h3>{heading}</h3>
+    <Heading as="h3" size="lg">
+      {heading}
+    </Heading>
     <NoContents contents={posts} />
     <PostLinkList posts={posts} />
   </div>
@@ -111,7 +118,9 @@ export const BlogPostLink = ({ heading, posts }) => (
 
 export const BlogTagLink = ({ heading, tags }) => (
   <div className={styles.blogTagLink}>
-    <h3>{heading}</h3>
+    <Heading as="h3" size="lg">
+      {heading}
+    </Heading>
     <NoContents contents={tags} />
     <TagLinkList tags={tags} />
   </div>

@@ -9,6 +9,7 @@ import Footer from '../components/footer'
 
 import GoogleAnalytics from '../components/google-analytics'
 import styles from '../styles/shared.module.css'
+import theme from '@/styles/theme'
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -27,7 +28,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <GoogleAnalytics />
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <div className={styles.container}>
           <Header />
           <div className={styles.content}>

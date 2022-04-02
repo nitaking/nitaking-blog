@@ -1,8 +1,15 @@
 import DocumentHead from '../components/document-head'
-import styles from '../styles/page.module.css'
 import { FeedList } from '@/features/rss/components/FeedList'
 import { getRssItems } from '@/lib/rss/client'
-import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Heading,
+  ListItem,
+  UnorderedList,
+  Text,
+  Spacer,
+} from '@chakra-ui/react'
 import React from 'react'
 
 export async function getStaticProps() {
@@ -17,27 +24,39 @@ export async function getStaticProps() {
 }
 
 const RenderPage = ({ articles = [] }) => (
-  <div className={styles.container}>
+  <Container>
     <DocumentHead />
 
     <Box>
-      <Text as="h2">About</Text>
-      <p>ツールや Tips が大好きな、自称ツールおじさんです。</p>
-      <p>以下の話題について投稿していきます</p>
+      <Heading as="h2" size="lg">
+        About
+      </Heading>
+      <Box p={2}>
+        <Text>Tipsやちょっとした小技が好きな、自称ツールおじさんです。</Text>
+        <Text>以下の話題について投稿していきます。</Text>
+      </Box>
 
-      <UnorderedList p={3}>
-        <ListItem>ツールの紹介</ListItem>
-        <ListItem>こんなツールの使い方見つけた！</ListItem>
-        <ListItem>ライフハック術</ListItem>
-        <ListItem>コードハック術</ListItem>
-      </UnorderedList>
+      <Box p={2} pt={0}>
+        <UnorderedList px={3}>
+          <ListItem>ツールの紹介</ListItem>
+          <ListItem>こんなツールの使い方見つけた！</ListItem>
+          <ListItem>ライフハック術</ListItem>
+          <ListItem>コードハック術</ListItem>
+        </UnorderedList>
+      </Box>
     </Box>
+
+    <Spacer h={2} />
 
     <Box>
-      <Text as="h2">Outputs</Text>
-      <FeedList posts={articles.slice(0, 8)} />
+      <Heading as="h2" size="lg">
+        Tech Post
+      </Heading>
+      <Box p={2}>
+        <FeedList posts={articles.slice(0, 8)} />
+      </Box>
     </Box>
-  </div>
+  </Container>
 )
 
 export default RenderPage

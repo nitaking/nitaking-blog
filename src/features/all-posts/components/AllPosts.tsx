@@ -55,8 +55,6 @@ export const AllPosts = (props: { posts: Post[]; articles: PostItem[] }) => {
 
   allList.sort((a, b) => formatMilliseconds(b) - formatMilliseconds(a))
 
-  console.debug('allList', allList)
-
   return (
     <List>
       {allList.map(postItem => (
